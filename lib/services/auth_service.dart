@@ -8,11 +8,45 @@ import '../models/user_model.dart';
 import '../models/transaction_model.dart';
 import '../models/message_model.dart';
 import '../models/psychologist_model.dart';
+import '../config/api_config.dart';
 
 class AuthService {
-  final String baseUrl = 'http://your-server-ip/api';
-  final String wsUrl = 'ws://your-server-ip:6001/app/chat';
+  final String baseUrl = ApiConfig.apiBaseUrl;
+  final String wsUrl = ApiConfig.wsChatUrl;
   final _logger = Logger();
+
+  // Helper untuk menangani error dan memberikan pesan yang user-friendly
+  String _handleError(dynamic error) {
+    // Cek jika error adalah ClientException yang membungkus SocketException
+    final errorString = error.toString().toLowerCase();
+    
+    if (error is SocketException || errorString.contains('socketexception')) {
+      if (errorString.contains('connection refused')) {
+        return 'Tidak dapat terhubung ke server. Pastikan backend Laravel sudah berjalan di ${ApiConfig.baseUrl}';
+      } else if (errorString.contains('network is unreachable') || 
+                 errorString.contains('network unreachable')) {
+        return 'Tidak ada koneksi internet. Periksa koneksi Anda dan coba lagi.';
+      } else if (errorString.contains('failed host lookup') ||
+                 errorString.contains('name resolution')) {
+        return 'Tidak dapat menemukan server. Periksa URL dan koneksi internet Anda.';
+      } else {
+        return 'Gagal terhubung ke server. Periksa koneksi internet Anda.';
+      }
+    } else if (error is HttpException || errorString.contains('httpexception')) {
+      return 'Terjadi kesalahan pada server. Silakan coba lagi nanti.';
+    } else if (error is FormatException || errorString.contains('formatexception')) {
+      return 'Terjadi kesalahan saat memproses data. Silakan coba lagi.';
+    } else if (errorString.contains('clientexception')) {
+      // ClientException biasanya membungkus SocketException
+      if (errorString.contains('connection refused')) {
+        return 'Tidak dapat terhubung ke server. Pastikan backend Laravel sudah berjalan di ${ApiConfig.baseUrl}';
+      } else {
+        return 'Gagal terhubung ke server. Periksa koneksi internet Anda.';
+      }
+    } else {
+      return 'Terjadi kesalahan. Silakan coba lagi.';
+    }
+  }
 
   Future<Map<String, dynamic>> login(String email, String password) async {
     try {
@@ -56,9 +90,10 @@ class AuthService {
         };
       }
     } catch (e) {
+      _logger.e('Login error', error: e, stackTrace: StackTrace.current);
       return {
         'success': false,
-        'message': 'Terjadi kesalahan: $e',
+        'message': _handleError(e),
       };
     }
   }
@@ -156,7 +191,7 @@ class AuthService {
           error: e, stackTrace: StackTrace.current);
       return {
         'success': false,
-        'message': 'Terjadi kesalahan: $e',
+        'message': _handleError(e),
       };
     }
   }
@@ -224,7 +259,7 @@ class AuthService {
           error: e, stackTrace: StackTrace.current);
       return {
         'success': false,
-        'message': 'Terjadi kesalahan: $e',
+        'message': _handleError(e),
       };
     }
   }
@@ -253,9 +288,10 @@ class AuthService {
         'message': data['message'],
       };
     } catch (e) {
+      _logger.e('Login error', error: e, stackTrace: StackTrace.current);
       return {
         'success': false,
-        'message': 'Terjadi kesalahan: $e',
+        'message': _handleError(e),
       };
     }
   }
@@ -290,7 +326,7 @@ class AuthService {
           error: e, stackTrace: StackTrace.current);
       return {
         'success': false,
-        'message': 'Terjadi kesalahan: $e',
+        'message': _handleError(e),
       };
     }
   }
@@ -334,7 +370,7 @@ class AuthService {
           error: e, stackTrace: StackTrace.current);
       return {
         'success': false,
-        'message': 'Terjadi kesalahan: $e',
+        'message': _handleError(e),
       };
     }
   }
@@ -401,7 +437,7 @@ class AuthService {
           error: e, stackTrace: stackTrace);
       return {
         'success': false,
-        'message': 'Terjadi kesalahan: $e',
+        'message': _handleError(e),
       };
     }
   }
@@ -539,9 +575,10 @@ class AuthService {
         'message': data['message'] ?? 'Gagal mengambil pesan',
       };
     } catch (e) {
+      _logger.e('Login error', error: e, stackTrace: StackTrace.current);
       return {
         'success': false,
-        'message': 'Terjadi kesalahan: $e',
+        'message': _handleError(e),
       };
     }
   }
@@ -659,7 +696,7 @@ class AuthService {
           error: e, stackTrace: stackTrace);
       return {
         'success': false,
-        'message': 'Terjadi kesalahan: $e',
+        'message': _handleError(e),
       };
     }
   }

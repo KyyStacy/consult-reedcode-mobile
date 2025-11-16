@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../services/midtrans_config_service.dart';
+import '../config/api_config.dart';
 
 class PaymentWebView extends StatefulWidget {
   final String snapToken;
@@ -51,7 +52,7 @@ class _PaymentWebViewState extends State<PaymentWebView> {
       }
 
       final response = await http.post(
-        Uri.parse('http://your-server-ip/api/transaction/check-status'),
+        Uri.parse('${ApiConfig.apiBaseUrl}/transaction/check-status'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -97,7 +98,7 @@ class _PaymentWebViewState extends State<PaymentWebView> {
       if (token == null) return;
 
       final response = await http.post(
-        Uri.parse('http://your-server-ip/api/transaction/check-status'),
+        Uri.parse('${ApiConfig.apiBaseUrl}/transaction/check-status'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -142,7 +143,7 @@ class _PaymentWebViewState extends State<PaymentWebView> {
       if (token == null) return;
 
       await http.post(
-        Uri.parse('http://your-server-ip/api/transaction/update-status'),
+        Uri.parse('${ApiConfig.apiBaseUrl}/transaction/update-status'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',

@@ -3,11 +3,12 @@ import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:web_socket_channel/io.dart';
 import '../models/message_model.dart';
+import '../config/api_config.dart';
 import 'auth_service.dart';
 
 class ChatService {
-  final String baseUrl = 'http://your-server-ip/api';
-  final String wsUrl = 'ws://your-server-ip:6001/app/chat';
+  final String baseUrl = ApiConfig.apiBaseUrl;
+  final String wsUrl = ApiConfig.wsChatUrl;
   final _logger = Logger();
   final AuthService _authService = AuthService();
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'Views/auth/login.dart';
 import 'Views/home.dart';
 import 'services/auth_service.dart';
+import 'theme/app_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,12 +15,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Mind Mender',
+      title: 'Consult by Reed Code',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.lightTheme,
       home: const SplashScreen(),
     );
   }
@@ -60,12 +57,29 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: SvgPicture.asset(
-          'assets/svg/logo.svg',
-          width: MediaQuery.of(context).size.width * 0.8,
-          height: MediaQuery.of(context).size.height * 0.4,
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: AppTheme.backgroundGradient,
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.psychology,
+                size: 80,
+                color: AppTheme.primaryCyanDark,
+              ),
+              const SizedBox(height: 24),
+              Text(
+                'Consult by Reed Code',
+                style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                      color: AppTheme.textCyan800,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+            ],
+          ),
         ),
       ),
     );

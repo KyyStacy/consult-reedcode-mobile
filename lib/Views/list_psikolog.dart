@@ -5,6 +5,7 @@ import '../services/auth_service.dart';
 import '../services/transaction_service.dart';
 import '../services/midtrans_config_service.dart' as config_service;
 import '../models/psychologist_model.dart';
+import '../config/api_config.dart';
 import 'chat.dart';
 import 'package:midtrans_sdk/midtrans_sdk.dart';
 import 'payment_webview.dart';
@@ -113,7 +114,7 @@ class _ListPsikologPageState extends State<ListPsikologPage> {
       _midtrans = await MidtransSDK.init(
         config: MidtransConfig(
           clientKey: config.clientKey,
-          merchantBaseUrl: "http://your-server-ip",
+          merchantBaseUrl: ApiConfig.merchantBaseUrl,
           colorTheme: ColorTheme(
             colorPrimary: primaryColor,
             colorPrimaryDark: primaryColorDark,
@@ -344,7 +345,7 @@ class _ListPsikologPageState extends State<ListPsikologPage> {
                           borderRadius: BorderRadius.circular(8),
                           child: psikolog.photo != null
                               ? Image.network(
-                                  'http://your-server-ip/storage/photos/${psikolog.photo}',
+                                  ApiConfig.getPhotoUrl('photos/${psikolog.photo}'),
                                   width: 100,
                                   height: 100,
                                   fit: BoxFit.cover,

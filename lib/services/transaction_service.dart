@@ -3,9 +3,10 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:logger/logger.dart';
 import '../models/transaction_model.dart';
+import '../config/api_config.dart';
 
 class TransactionService {
-  final String baseUrl = 'http://your-server-ip/api';
+  final String baseUrl = ApiConfig.apiBaseUrl;
   final _logger = Logger();
 
   Future<String?> _getToken() async {

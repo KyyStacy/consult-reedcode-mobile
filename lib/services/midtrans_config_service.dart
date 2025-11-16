@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:logger/logger.dart';
+import '../config/api_config.dart';
 
 class MidtransConfig {
   final String clientKey;
@@ -39,7 +40,7 @@ class MidtransConfigService {
       }
 
       final response = await http.get(
-        Uri.parse('http://your-server-ip/api/transaction/midtrans-config'),
+        Uri.parse('${ApiConfig.apiBaseUrl}/transaction/midtrans-config'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
