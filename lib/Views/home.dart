@@ -109,7 +109,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mind Mender',
+        title: const Text('Consult by Reed Code',
             style: TextStyle(
                 color: Color(0xFF0097A7), fontWeight: FontWeight.bold)),
         backgroundColor: Colors.white,

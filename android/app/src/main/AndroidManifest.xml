@@ -8,7 +8,7 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:label="Mind Mender"
+        android:label="Consult by Reed Code"
         tools:replace="android:label">
         <activity
             android:name=".MainActivity"

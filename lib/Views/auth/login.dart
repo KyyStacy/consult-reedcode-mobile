@@ -73,7 +73,7 @@ class _LoginViewState extends State<LoginView> {
               children: [
                 const SizedBox(height: 40),
                 // Icon dan Title
-                Icon(
+                const Icon(
                   Icons.psychology,
                   size: 80,
                   color: AppTheme.primaryCyanDark,

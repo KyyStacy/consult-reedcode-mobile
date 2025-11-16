@@ -65,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
+              const Icon(
                 Icons.psychology,
                 size: 80,
                 color: AppTheme.primaryCyanDark,
