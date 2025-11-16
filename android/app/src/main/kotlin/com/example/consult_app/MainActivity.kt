@@ -1,4 +1,4 @@
-package com.example.consult_app
+package com.reedcode.consult_mobile
 
 import io.flutter.embedding.android.FlutterActivity
 

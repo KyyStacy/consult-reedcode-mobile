@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "consult_app" "\0"
+            VALUE "FileDescription", "Consult by Reed Code" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "consult_app" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "consult_app.exe" "\0"
-            VALUE "ProductName", "consult_app" "\0"
+            VALUE "InternalName", "psychology_consultation_flutter" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 Reed Code. All rights reserved." "\0"
+            VALUE "OriginalFilename", "psychology_consultation_flutter.exe" "\0"
+            VALUE "ProductName", "Consult by Reed Code" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

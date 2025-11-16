@@ -1,11 +1,11 @@
 {
-    "name": "consult_app",
-    "short_name": "consult_app",
+    "name": "Consult by Reed Code",
+    "short_name": "Consult",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Aplikasi mobile untuk platform konsultasi psikologi online Consult by Reed Code.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
