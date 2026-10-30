@@ -60,7 +60,7 @@ class ApiConfig {
     }
 
     // Production URL (uncomment jika sudah deploy dan tidak menggunakan environment variable)
-    // return 'http://your-server-ip';
+    // return 'https://api.your-domain.com';
   }
 
   // API endpoint base
